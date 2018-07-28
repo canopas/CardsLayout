@@ -9,8 +9,8 @@ CardsLayout is a lightweight Collection Layout.
 
 
 ![Preview](https://github.com/filletofish/Cards/blob/master/Animation.gif)
-![top](CardsLayout/top_align.gif "top")
-![center](CardsLayout/center-align.gif "center")
+![top](/top-align.gif "top")
+![center](/center-align.gif "center")
 
 ## Installation
 
