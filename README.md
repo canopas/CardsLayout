@@ -8,8 +8,9 @@ CardsLayout is a lightweight Collection Layout.
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)
 
 
-![Preview](https://github.com/filletofish/Cards/blob/master/Animation.gif)![top](https://github.com/filletofish/Cards/blob/master/top_align.gif)![center](https://github.com/filletofish/Cards/blob/master/center-align.gif)
-
+![Preview](https://github.com/filletofish/Cards/blob/master/Animation.gif)
+![top](CardsLayout/top_align.gif "top")
+![center](CardsLayout/center-align.gif "center")
 
 ## Installation
 
