@@ -29,6 +29,12 @@ open class CardsCollectionViewLayout: UICollectionViewLayout {
       invalidateLayout()
     }
   }
+    
+  public var alignment = Alignment.centerLeft {
+    didSet {
+      invalidateLayout()
+    }
+  }
 
   // MARK: UICollectionViewLayout
 
@@ -120,8 +126,16 @@ fileprivate extension CardsCollectionViewLayout {
     let visibleIndex = indexPath.row - minVisibleIndex
     attributes.size = itemSize
     let midY = self.collectionView.bounds.midY
+    let yOffSet:CGFloat = {
+        switch alignment {
+        case .bottomLeft: return midY + spacing * CGFloat(visibleIndex)
+        case .centerLeft: return midY + spacing
+        case .topLeft: return midY - spacing * CGFloat(visibleIndex)
+        }
+    }()
+    
     attributes.center = CGPoint(x: contentCenterX + spacing * CGFloat(visibleIndex),
-                                y: midY + spacing * CGFloat(visibleIndex))
+                                y: yOffSet)
     attributes.zIndex = maximumVisibleItems - visibleIndex
 
     attributes.transform = transform(atCurrentVisibleIndex: visibleIndex,
@@ -132,7 +146,14 @@ fileprivate extension CardsCollectionViewLayout {
       break
     case 1..<maximumVisibleItems:
       attributes.center.x -= spacing * percentageDeltaOffset
-      attributes.center.y -= spacing * percentageDeltaOffset
+      switch alignment {
+      case .bottomLeft:
+        attributes.center.y -= spacing * percentageDeltaOffset
+      case .topLeft:
+        attributes.center.y += spacing * percentageDeltaOffset
+      case .centerLeft:
+        break
+      }
 
 
       if visibleIndex == maximumVisibleItems - 1 {
@@ -145,4 +166,12 @@ fileprivate extension CardsCollectionViewLayout {
     }
     return attributes
   }
+}
+
+extension CardsCollectionViewLayout {
+    public enum Alignment {
+        case bottomLeft
+        case topLeft
+        case centerLeft
+    }
 }
